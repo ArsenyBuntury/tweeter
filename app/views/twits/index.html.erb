@@ -1,1 +1,8 @@
 <h2>Главная страница твиттера</h2>
+<ul>
+	<% @twits.each do |twit| %>
+	<li>
+		<%= link_to twit.name, twit %>
+	</li>
+	<%end%>
+	</ul>
