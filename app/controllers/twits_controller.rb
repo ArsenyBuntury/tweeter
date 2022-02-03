@@ -37,7 +37,7 @@ class TwitsController < ApplicationController
 		@twit=Twit.find(params[:id])
 		@twit.destroy
 		
-		redirect_to root_path
+		redirect_to twit_path
 	end
 
 	private def twit_params

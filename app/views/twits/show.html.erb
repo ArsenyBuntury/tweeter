@@ -1,9 +1,36 @@
 <h1> <%= @twit.name %></h1>
 <p> <%= @twit.body %></p>
-<ul>
-	
-	<li> <%= link_to "Edit twit", edit_twit_path(@twit) %> </li>
-	<li> <%= link_to "Destroy", twit_path(@twit),
+
+
+	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
+	<%= link_to "Destroy", twit_path(@twit), :class=>'btn btn-danger',
 	method: :delete,
-	data: { confirm: "Are you sure?" } %> </li>
-</ul>
+	data: {confirm: "Are you sure?"} %> 
+
+	<h2>Comments :</h2>
+	<% @twit.comments.each do |comment| %>
+	<p>
+		<strong><%=comment.commenter%></strong>
+		
+	</p>
+	<p>
+		<strong><%=comment.body%></strong>
+		
+	</p>
+	<% end %>
+
+
+<h2>Add your comment :</h2>
+<%= form_with model: [@twit, @twit.comments.build] do |form| %>
+	<p>
+	<strong><%= form.label :commenter %> <br>
+	<%= form.text_field :commenter %>
+	</p>
+	<p>
+		<%= form.label :body,"Comment"%> <br>
+		<%= form.text_area :body %>
+	</p>
+	<p>
+		<%= form.submit("Add comment") %>
+	</p>
+	<% end %>

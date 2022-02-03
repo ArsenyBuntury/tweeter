@@ -1,21 +1,21 @@
 
 <%= form_with model: twit do |form|%>
 	<p>
-		<%= form.label :name %> <br>
+		<%= form.label :name,"Your name"%> <br>
 		<%= form.text_field :name %>
 		<% twit.errors.full_messages_for(:name).each do |message| %>
-		<div><%= message %></div>
+		<div class="alert alert-danger"><%= message %></div>
 		<% end %>
 	</p>
 	<p>
-		<%= form.label :body %> <br>
+		<%= form.label :body,"Your twit" %> <br>
 		<%= form.text_area :body %>
 		<% twit.errors.full_messages_for(:body).each do |message| %>
-		<div><%=message%></div>
+		<div class="alert alert-danger"><%=message%></div>
 		<% end %>
 	</p>
 	<p>
 		
-		<%= form.submit %>
+		<%= form.submit({:class=>'btn btn-succes'}) %>
 	</p>
 	<% end %>
