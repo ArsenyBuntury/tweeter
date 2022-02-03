@@ -12,15 +12,35 @@ class TwitsController < ApplicationController
 	end
 
 	def create
-		@twit= Twit.new(name:"...",body:"...")
+		@twit= Twit.new(twit_params)
 		if @twit.save
 			redirect_to @twit
 		else
 			render :new, status: :unprocessable_entity
 		end
 	end
+	def edit
+		@twit=Twit.find(params[:id])
+	end
 
-	#private def twit_params
-		#params.require(:twit).permit(:name, :body)
-	#end
+	def update 
+		@twit=Twit.find(params[:id])
+		if @twit.update(twit_params)
+			redirect_to @twit
+		else
+			render :edit, status: :unprocessable_entity
+		end
+
+	end
+
+	def destroy
+		@twit=Twit.find(params[:id])
+		@twit.destroy
+		
+		redirect_to root_path
+	end
+
+	private def twit_params
+		params.require(:twit).permit(:name, :body)
+	end
 end

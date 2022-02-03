@@ -1,2 +1,9 @@
 <h1> <%= @twit.name %></h1>
 <p> <%= @twit.body %></p>
+<ul>
+	
+	<li> <%= link_to "Edit twit", edit_twit_path(@twit) %> </li>
+	<li> <%= link_to "Destroy", twit_path(@twit),
+	method: :delete,
+	data: { confirm: "Are you sure?" } %> </li>
+</ul>

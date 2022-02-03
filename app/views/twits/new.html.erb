@@ -1,15 +1,2 @@
 <h2>Создание нового твита</h2>
-<%= form_for :twit, url: twits_path do |f| %>
-	<p>
-		Ваше имя <br>
-		<%= f.text_field :name %>
-	</p>
-	<p>
-		Ваш твит <br>
-		<%= f.text_area :body %>
-	</p>
-	<p>
-		
-		<%= f.submit %>
-	</p>
-	<% end %>
+<%= render "form", twit: @twit %>
