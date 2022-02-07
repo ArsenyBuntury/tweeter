@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'contacts' => 'pages#contacts'
   resources :twits do
-    resources :comments
+    resources :comments, only: %i[create destroy]
   end
   # resources :twits
 end
