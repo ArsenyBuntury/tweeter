@@ -1,19 +1,22 @@
+<% provide :page_title, 'Twits' %>
+<% currently_at %>
 <h2>All twits</h2>
 <table>
-<tr><%= link_to "Create twit", new_twit_path %></tr>
+<tr><%= link_to "Create twit", new_twit_path, class: "btn btn-aware" %></tr>
 <tr>&#160 &#160 &#160</tr>
 <tr><%= form_with url: "/search", method: :get do |form| %>
 	<%= form.label :query, "Search for:" %>
 	<%= form.text_field :query %>
 	<%= form.submit "Search" %></tr>
+	<%= paginate @twits %>
 
 </table>
 <ul>
 	<% @twits.each do |twit| %>
 	<li>
-		<%= link_to twit.name, twit %>
+		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
 		<ul>
-		<li><%= link_to twit.body, twit %></li>
+		<%= truncate strip_tags(twit.body), length: 180 %>
 	</ul>
 	</li>
 	<%end%>

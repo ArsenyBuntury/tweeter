@@ -1,9 +1,7 @@
-class TwitsController < ApplicationController
-	require 'pry'
-
+class TwitsController < ApplicationController	
 	before_action :load_twit!, only: %w(show edit update destroy)
   def index
-    @twits = Twit.all
+    @twits = Twit.order(created_at: :desc).page params[:page]
   end
 
   def new
@@ -11,9 +9,8 @@ class TwitsController < ApplicationController
   end
 
   def show
-    @twit = load_twit!
     @comment=@twit.comments.build
-    @comments=Comment.order created_at: :desc
+    @comments=@twit.comments.order(created_at: :desc).page params[:page]
   end
 
   def create
@@ -26,11 +23,9 @@ class TwitsController < ApplicationController
   end
 
   def edit
-    @twit = load_twit!
   end
 
   def update
-    @twit = load_twit!
 
     if @twit.update(twit_params)
       redirect_to @twit
@@ -39,11 +34,8 @@ class TwitsController < ApplicationController
     end
   end
 
-  def destroy
-    
-    @twit = load_twit!
+  def destroy  
     @twit.destroy
-
     redirect_to twits_path, status: :see_other
   end
 
@@ -52,6 +44,6 @@ class TwitsController < ApplicationController
   end
 
   def load_twit!
-  	Twit.find(params[:id])
+  	@twit=Twit.find(params[:id])
   end
 end
