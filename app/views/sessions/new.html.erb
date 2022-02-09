@@ -1,0 +1,12 @@
+<% provide :page_title, 'Log in' %>
+<% currently_at %>
+
+<h1 class="mb-4">Log in</h1>
+
+<%= form_with url: sessions_path do |form|%>
+	<p><%= form.label :email,"Your email"%> <br>
+		<%= form.email_field :email, class: 'form-control form-control-lg' %></p>
+	<p><%= form.label :password,"Your password"%> <br>
+		<%= form.password_field :password, class: 'form-control form-control-lg' %></p>
+	<p><%= form.submit "Log in", class: 'btn btn-primary btn-lg'%></p>
+	<% end %>

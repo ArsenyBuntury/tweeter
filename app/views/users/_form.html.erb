@@ -1,0 +1,29 @@
+
+<%= form_with model: @user do |form|%>
+	<p>
+		<%= form.label :email,"Your email"%> <br>
+		<%= form.email_field :email, class: 'form-control form-control-lg' %>
+
+	</p>
+
+	<p>
+		<%= form.label :name,"Your name"%> <br>
+		<%= form.text_field :name, class: 'form-control form-control-lg' %>
+	</p>
+
+	<p>
+		<%= form.label :password,"Your password"%> <br>
+		<%= form.password_field :password, class: 'form-control form-control-lg' %>
+	</p>
+
+	<p>
+		<%= form.label :password_confirmation,"Repeat password"%> <br>
+		<%= form.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+	</p>
+
+	<p>
+		
+		<%= form.submit "Let`s go!", class: 'btn btn-primary btn-lg' %>
+	</p>
+
+	<% end %>
