@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+
+	before_action :require_no_authentification, only: %i[new create]
+
 	def new
 
 	end
@@ -15,7 +18,8 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-
+		sign_out
+		redirect_to home_path
 	end
 
 end
