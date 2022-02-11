@@ -2,25 +2,47 @@
 <%= form_with model: @user do |form|%>
 	<p>
 		<%= form.label :email,"Your email"%> <br>
-		<%= form.email_field :email, class: 'form-control form-control-lg' %>
+		<%= form.email_field :email, value: params[:email],
+		class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:email).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
 
 	</p>
 
 	<p>
 		<%= form.label :name,"Your name"%> <br>
 		<%= form.text_field :name, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:name).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
 	</p>
 
 	<p>
-		<%= form.label :password,"Your password"%> <br>
+
+		<%= form.label :password,"New password"%> <br>
 		<%= form.password_field :password, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:password).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
 	</p>
 
 	<p>
-		<%= form.label :password_confirmation,"Repeat password"%> <br>
+		<%= form.label :password_confirmation%> <br>
 		<%= form.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
 	</p>
-
+	<% unless @user.new_record? %>
+	<p>
+		<%= form.label :old_password%> <br>
+		<%= form.password_field :old_password, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:old_password).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+	<% end %>
 	<p>
 		
 		<%= form.submit "Let`s go!", class: 'btn btn-primary btn-lg' %>

@@ -9,6 +9,8 @@ class SessionsController < ApplicationController
 	def create
 		user = User.find_by email: params[:email]
 		if user&.authenticate(params[:password])
+			sign_in user
+			remember(user) if params[:remember_me] == '1'
 			session[:user_id]=user.id
 			redirect_to home_path
 		else

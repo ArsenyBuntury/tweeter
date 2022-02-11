@@ -6,16 +6,24 @@
       </a>
 
       <ul class="nav nav-pills">
-        <li class="nav-item"><span class="nav-link" ><%= link_to"Home",home_path%></span></li>
-        
-
-        <li class="nav-item"><span class="nav-link"><%= link_to "Contact us", contacts_path %></span></li>
-        <li class="nav-item"><span class="nav-link"><%= link_to"About us" , about_path %></span></li>
         <% if user_signed_in? %>
         <li>
-          <a class="nav-link px-2" href="a">
-           <%=  current_user.name_or_email %>
+
+          <span class="nav-link  px-2">Hi, <%=current_user.name_or_email %></span>
+
+          </li>
+        <% end %>
+
+        <li class="nav-item"><span class="nav-link"><%= link_to "Contact us", contacts_path %></span></li>
+
+        <li class="nav-item"><span class="nav-link"><%= link_to"About us" , about_path %></span></li>
+
+        <% if user_signed_in? %>
+        
          </a>
+         
+         <li class="nav-item"><%= link_to "Profile", edit_user_path(current_user), class: "nav-link px-2"%>
+       </li>
          <li> <%= link_to "Log out", session_path, data:{confirm:"Are you sure?"}, :method => 'delete' , class: "nav-link px-2"%>
        </li>
        <% else %>
