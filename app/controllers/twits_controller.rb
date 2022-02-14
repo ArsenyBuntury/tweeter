@@ -1,5 +1,5 @@
-class TwitsController < ApplicationController	
-	before_action :load_twit!, only: %w(show edit update destroy)
+class TwitsController < ApplicationController
+  before_action :load_twit!, only: %w[show edit update destroy]
   def index
     @twits = Twit.order(created_at: :desc).page params[:page]
   end
@@ -9,8 +9,8 @@ class TwitsController < ApplicationController
   end
 
   def show
-    @comment=@twit.comments.build
-    @comments=@twit.comments.order(created_at: :desc).page params[:page]
+    @comment = @twit.comments.build
+    @comments = @twit.comments.order(created_at: :desc).page params[:page]
   end
 
   def create
@@ -22,11 +22,9 @@ class TwitsController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def update
-
     if @twit.update(twit_params)
       redirect_to @twit
     else
@@ -34,7 +32,7 @@ class TwitsController < ApplicationController
     end
   end
 
-  def destroy  
+  def destroy
     @twit.destroy
     redirect_to twits_path, status: :see_other
   end
@@ -44,6 +42,6 @@ class TwitsController < ApplicationController
   end
 
   def load_twit!
-  	@twit=Twit.find(params[:id])
+    @twit = Twit.find(params[:id])
   end
 end

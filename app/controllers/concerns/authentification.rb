@@ -1,32 +1,32 @@
 module Authentification
-	extend ActiveSupport::Concern
-	require 'pry'
-	included do
-private 
+  extend ActiveSupport::Concern
+  require 'pry'
+  included do
+    private
 
-	def current_user
-		if session[:user_id].present?
-		@current_user ||= User.find_by(id: session[:user_id]).decorate 
-	elsif cookies.encrypted[:user_id].present?
-		user = User.find_by(id: session[:user_id])
-		if user&.remember_token_authenticated?(cookies.encrypted[:remember_token])
-			sign_in user
-			@current_user ||= user.decorate
-		end
-	end
-end
+    def current_user
+      if session[:user_id].present?
+        @current_user ||= User.find_by(id: session[:user_id]).decorate
+      elsif cookies.encrypted[:user_id].present?
+        user = User.find_by(id: session[:user_id])
+        if user&.remember_token_authenticated?(cookies.encrypted[:remember_token])
+          sign_in user
+          @current_user ||= user.decorate
+        end
+      end
+    end
 
+    def user_signed_in?
+      current_user.present?
+    end
 
-	def user_signed_in?
-		current_user.present?
-	end
+    def require_no_authentification
+      return unless user_signed_in?
 
-	def require_no_authentification
-		return if !user_signed_in?
-		redirect_to home_path
-	end
+      redirect_to home_path
+    end
 
-	def require_authentication
+    def require_authentication
       return if user_signed_in?
 
       flash[:warning] = t 'global.flash.not_signed_in'
@@ -34,20 +34,27 @@ end
     end
 
     def sign_in(user)
-    	session[:user_id] = user.id
+      session[:user_id] = user.id
     end
 
     def remember(user)
-    	user.remember_me
-    	cookies.encrypted.permanent[:remember_token] = user.remember_token
-    	cookies.encrypted.permanent[:user_id] = user.id
+      user.remember_me
+      cookies.encrypted.permanent[:remember_token] = user.remember_token
+      cookies.encrypted.permanent[:user_id] = user.id
     end
 
-	def sign_out
-	session.delete :user_id
-	@current_user=nil	
-	end
+    def forget(user)
+      user.forget_me
+      cookies.delete :user_id
+      cookies.delete :remember_token
+    end
 
-	helper_method :current_user, :user_signed_in?
-	end
+    def sign_out
+      forget current_user
+      session.delete :user_id
+      @current_user = nil
+    end
+
+    helper_method :current_user, :user_signed_in?
+  end
 end
