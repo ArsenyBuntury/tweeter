@@ -1,8 +1,5 @@
 {
   "dependencies": {
     "@popperjs/core": "^2.11.2"
-  },
-  "devDependencies": {
-    "webpack": "^5.68.0"
   }
 }

@@ -1,0 +1,23 @@
+[33mcommit 1a88ecca8778c813766b1756d8e59a9dff90375a[m[33m ([m[1;36mHEAD -> [m[1;32mmigration/webpacker[m[33m, [m[1;31morigin/migration/webpacker[m[33m)[m
+Author: ArsenyBuntury <yeahwheel@gmail.com>
+Date:   Mon Feb 14 22:48:49 2022 +0300
+
+    wip with migration to webpacker
+
+[33mcommit 3f5e0beb22f4d27116ee9ea9716df44dd972791e[m[33m ([m[1;31morigin/pages/add_some_pages[m[33m, [m[1;32mpages/add_some_pages[m[33m)[m
+Author: ArsenyBuntury <yeahwheel@gmail.com>
+Date:   Mon Feb 14 22:08:57 2022 +0300
+
+    Done with cookies
+
+[33mcommit d077ede84899558d142a4175f732fd06a0ba1da3[m
+Author: ArsenyBuntury <yeahwheel@gmail.com>
+Date:   Fri Feb 11 19:32:36 2022 +0300
+
+    Made changes with user profile, made log out feature, wip with cookies
+
+[33mcommit 77c8b91869ecd07ac88dba8751637c9a18030507[m
+Author: ArsenyBuntury <yeahwheel@gmail.com>
+Date:   Thu Feb 10 17:30:23 2022 +0300
+
+    Add log in/out session, wip with edit profile

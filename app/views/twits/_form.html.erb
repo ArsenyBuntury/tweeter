@@ -1,7 +1,7 @@
 
 <%= form_with model: twit do |form|%>
 	<p>
-		<%= form.label :name,"Your name"%> <br>
+		<%= form.label :name %> <br>
 		<%= form.text_field :name %>
 		<% twit.errors.full_messages_for(:name).each do |message| %>
 		<div class="alert alert-danger"><%= message %></div>

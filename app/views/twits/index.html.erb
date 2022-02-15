@@ -1,6 +1,6 @@
-<% provide :page_title, 'Twits' %>
+<% provide :page_title, t('menu.twits')%>
 <% currently_at %>
-<h2>All twits</h2>
+<h2><%=t('menu.twits')%></h2>
 <table>
 <tr><%= link_to "Create twit", new_twit_path, class: "btn btn-aware" %></tr>
 <tr>&#160 &#160 &#160</tr>
@@ -14,6 +14,9 @@
 <ul>
 	<% @twits.each do |twit| %>
 	<li>
+	<%#<section class="card-header">
+		<%= twit.user.name_or_email%>
+		<%#</section>%> <%#Проверить почему не срабатывают декораторы!%>
 		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
 		<ul>
 		<%= truncate strip_tags(twit.body), length: 180 %>
