@@ -15,6 +15,7 @@ class TwitsController < ApplicationController
 
   def create
     @twit = Twit.new(twit_params)
+    binding.pry
     if @twit.save
       redirect_to @twit
     else
@@ -37,7 +38,9 @@ class TwitsController < ApplicationController
     redirect_to twits_path, status: :see_other
   end
 
-  private def twit_params
+  private 
+
+  def twit_params
     params.require(:twit).permit(:name, :body)
   end
 

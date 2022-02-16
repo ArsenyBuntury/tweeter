@@ -6,7 +6,7 @@ class User < ApplicationRecord
   has_many :twits, dependent: :destroy
   has_many :comments, dependent: :destroy
 
-  validate :password_presence
+  validates :password, presence: true
   validate :correct_old_password, on: :update, if: -> { password.present? }
   validates :password, confirmation: true, allow_blank: true
 
@@ -56,7 +56,4 @@ class User < ApplicationRecord
                'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end
 
-  def password_presence
-    errors.add(:password, :blank) unless password_digest.present?
-  end
 end
