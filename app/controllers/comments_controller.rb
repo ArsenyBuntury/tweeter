@@ -1,7 +1,9 @@
 class CommentsController < ApplicationController
   before_action :load_twit!
+  
   def create
     @comment = @twit.comments.build(comment_params)
+    @comment.user=current_user
     if @comment.save
       flash[:succes] = 'Comment posted!'
       redirect_to twit_path(@twit)
@@ -32,7 +34,9 @@ class CommentsController < ApplicationController
     redirect_to twit_path(@twit)
   end
 
-  private def comment_params
+  private
+  
+  def comment_params
     params.require(:comment).permit(:commenter, :body)
   end
 

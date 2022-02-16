@@ -2,24 +2,24 @@
 <% currently_at %>
 <h2><%=t('menu.twits')%></h2>
 <table>
-<tr><%= link_to "Create twit", new_twit_path, class: "btn btn-aware" %></tr>
-<tr>&#160 &#160 &#160</tr>
+<tr> <% if user_signed_in? %>
+<%= link_to t('menu.create'), new_twit_path, class: "btn btn-aware" %></tr>
+<tr>&#160 &#160 &#160</tr> <% end %>
 <tr><%= form_with url: "/search", method: :get do |form| %>
-	<%= form.label :query, "Search for:" %>
+	<%= form.label :query, t('menu.search_for') %>
 	<%= form.text_field :query %>
-	<%= form.submit "Search" %></tr>
+	<%= form.submit t('menu.search') %></tr>
 	<%= paginate @twits %>
 
 </table>
 <ul>
+	
 	<% @twits.each do |twit| %>
 	<li>
-	<%#<section class="card-header">
-		<%= twit.user.name_or_email%>
-		<%#</section>%> <%#Проверить почему не срабатывают декораторы!%>
+
 		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
 		<ul>
-		<%= truncate strip_tags(twit.body), length: 180 %>
+		<%= truncate strip_tags(twit.body), length: 200 %>
 	</ul>
 	</li>
 	<%end%>

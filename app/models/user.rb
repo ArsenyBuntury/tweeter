@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
-  validate :password_complexity
+  
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64

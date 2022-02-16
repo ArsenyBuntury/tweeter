@@ -16,7 +16,7 @@ class TwitsController < ApplicationController
 
   def create
     @twit = current_user.twits.new(twit_params)
-
+    
     if @twit.save
       redirect_to @twit
     else

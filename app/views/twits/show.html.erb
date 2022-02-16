@@ -8,7 +8,6 @@
 
 	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
 	<%= link_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
-
 		<h5>Add your comment :</h5>
 
 	<%= render "comments/form"%>

@@ -2,3 +2,13 @@ ru:
 
   menu:
     twits: "Все твиты"
+    create: "Создать твит"
+    search: "Поиск"
+    search_for: "Искать:"
+    contact: "Контакты"
+    about: "О нас"
+    profile: "Профиль"
+    logout: "Выйти из профиля"
+    login: "Войти"
+    signup: "Зарегистрироваться"
+    greetings: "Привет, "
