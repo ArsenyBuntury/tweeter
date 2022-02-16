@@ -1,5 +1,6 @@
 class TwitsController < ApplicationController
   before_action :load_twit!, only: %w[show edit update destroy]
+
   def index
     @twits = Twit.order(created_at: :desc).page params[:page]
   end
@@ -14,8 +15,8 @@ class TwitsController < ApplicationController
   end
 
   def create
-    @twit = Twit.new(twit_params)
-    binding.pry
+    @twit = current_user.twits.new(twit_params)
+
     if @twit.save
       redirect_to @twit
     else
