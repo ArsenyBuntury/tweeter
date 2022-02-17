@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get 'about' => 'pages#about'
   get 'contacts' => 'pages#contacts'
   resources :twits do
-    resources :comments, only: %i[create destroy]
+    resources :comments, only: %i[create destroy] 
+  end
+
+  resources :comments, only: %i[create destroy] do
+    resources :subcomments, only: %i[create destroy]
   end
 
   namespace :admin do

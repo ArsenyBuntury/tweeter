@@ -16,7 +16,7 @@
 	
 	<% @twits.each do |twit| %>
 	<li>
-
+		
 		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
 		<ul>
 		<%= truncate strip_tags(twit.body), length: 200 %>

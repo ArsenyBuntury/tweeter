@@ -1,4 +1,5 @@
 class TwitsController < ApplicationController
+include TwitsComments
   before_action :load_twit!, only: %w[show edit update destroy]
 
   def index
@@ -15,8 +16,8 @@ class TwitsController < ApplicationController
   end
 
   def create
-    @twit = current_user.twits.new(twit_params)
-    
+    @twit = current_user.twits.build(twit_params)
+    flash[:success]="Success!"
     if @twit.save
       redirect_to @twit
     else

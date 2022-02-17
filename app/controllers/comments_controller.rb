@@ -1,9 +1,9 @@
 class CommentsController < ApplicationController
+include TwitsComments
   before_action :load_twit!
   
   def create
-    @comment = @twit.comments.build(comment_params)
-    @comment.user=current_user
+    @comment = @twit.comments.build(comment_create_params)
     if @comment.save
       flash[:succes] = 'Comment posted!'
       redirect_to twit_path(@twit)
@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 
   def update
     @comment = @twit.comments.find(params[:id])
-    if @comment.update(comment_params)
+    if @comment.update(comment_update_params)
       redirect_to twit_path(@twit)
     else
       render :edit
@@ -28,7 +28,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    comment = @twit.comments.find(params[:id])
+    comment = @twit.comments.find(params[:id]) 
+    
     comment.destroy
     flash[:success] = 'Comment deleted!'
     redirect_to twit_path(@twit)
@@ -36,7 +37,11 @@ class CommentsController < ApplicationController
 
   private
   
-  def comment_params
+  def comment_create_params
+    params.require(:comment).permit(:commenter, :body).merge(user_id: current_user.id)
+  end 
+
+  def comment_update_params
     params.require(:comment).permit(:commenter, :body)
   end
 

@@ -6,5 +6,3 @@
 //= require popper
 
 
-import "controllers"
-

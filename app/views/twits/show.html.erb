@@ -4,15 +4,19 @@
 
 <h2> <%= @twit.name %></h2>
 <div> <%= sanitize @twit.body %></div>
-
-
+	
 	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
 	<%= link_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
+		
+		<hr><div><strong><%=t('twit.user')%></strong></div><%= current_user.name_or_email%>
+
 		<h5>Add your comment :</h5>
+		
 
 	<%= render "comments/form"%>
 
 	<h5>Comments :</h5>
+
 	<%= paginate @comments %>
 	<% @comments.each do |comment| %>
 	<p>
@@ -23,6 +27,8 @@
 	</p>
 	<%= link_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
 	<% end %>
+
+	
 	<%= paginate @comments %>
 
 

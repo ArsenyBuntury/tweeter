@@ -1,0 +1,4 @@
+ 
+ <% flash.each do |k, v| %>
+        <%= tag.div v, class: "alert alert-#{k} text-center", role: 'alert' %>
+      <% end %>
