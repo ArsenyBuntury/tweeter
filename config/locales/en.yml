@@ -6,7 +6,7 @@ en:
   menu:
     twits: "All twits"
     create: "Create twit"
-    search: "Search"
+    search: "Search by tags"
     search_for: "Search for:"
     contact: "Contact us"
     about: "About us"

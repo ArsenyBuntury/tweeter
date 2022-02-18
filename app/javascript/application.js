@@ -5,4 +5,5 @@
 //= require bootstrap-sprockets 
 //= require popper
 
+import './scripts/select2'
 

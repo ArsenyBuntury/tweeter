@@ -8,8 +8,8 @@
 	<%= render @twit.tags%>
 	</div>
 	
-	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
-	<%= link_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
+	<hr> <%= button_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
+	<hr><%= button_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
 		
 		<hr><div><strong><%=t('twit.user')%></strong></div><%= current_user.name_or_email%>
 
@@ -28,7 +28,7 @@
 	<p>
 		<strong><%=comment.body%></strong>	
 	</p>
-	<%= link_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
+	<%= button_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
 	<% end %>
 
 	

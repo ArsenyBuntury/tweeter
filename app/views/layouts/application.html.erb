@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale%>">
   <head>
     <title><%= full_title(yield(:page_title))%></title>
         <%= csrf_meta_tags %>
@@ -10,7 +10,7 @@
     <%= javascript_include_tag "application" %>
   </head>
 
-  <body>
+  <body data-lang="<%= I18n.locale%>">
     <div class="container">
     <%= yield :main_menu %>
   </div>
