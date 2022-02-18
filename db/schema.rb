@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_17_122417) do
+ActiveRecord::Schema[7.0].define(version: 2022_02_18_110406) do
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
@@ -31,6 +31,22 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_17_122417) do
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_subcomments_on_commentable"
     t.index ["user_id"], name: "index_subcomments_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "twit_tags", force: :cascade do |t|
+    t.integer "twit_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tag_id"], name: "index_twit_tags_on_tag_id"
+    t.index ["twit_id", "tag_id"], name: "index_twit_tags_on_twit_id_and_tag_id", unique: true
+    t.index ["twit_id"], name: "index_twit_tags_on_twit_id"
   end
 
   create_table "twits", force: :cascade do |t|
@@ -55,5 +71,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_17_122417) do
   add_foreign_key "comments", "twits"
   add_foreign_key "comments", "users"
   add_foreign_key "subcomments", "comments", column: "user_id"
+  add_foreign_key "twit_tags", "tags"
+  add_foreign_key "twit_tags", "twits"
   add_foreign_key "twits", "users"
 end

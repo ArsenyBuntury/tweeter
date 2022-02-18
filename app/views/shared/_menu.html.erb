@@ -20,23 +20,15 @@
 
         <% if user_signed_in? %>
         
-         </a>
-         <div class="dropdown">
-  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="#"><%= link_to t('menu.profile'), edit_user_path(current_user), class: "nav-link px-2"%></a>
-    <a class="dropdown-item" href="#"><%= link_to t('menu.logout'), session_path, data:{confirm:"Are you sure?"}, :method => 'delete' ,
-          class: "nav-link px-2"%></a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
+          </a>
+
          
-         <li class="nav-item">
+         <li class="nav-item"><%= link_to t('menu.profile'), edit_user_path(current_user), class: "nav-link px-2"%>
        </li>
-         <li> 
+         <li> <%= link_to t('menu.logout'), session_path, data:{confirm:"Are you sure?"}, :method => 'delete' ,
+          class: "nav-link px-2"%>
        </li>
+    
        <% else %>
         <li class="nav-item"><span class="nav-link"><%= link_to t('menu.signup'), new_user_path%></span></li>
         <li class="nav-item"><span class="nav-link"><%= link_to t('menu.login'), new_session_path%></span></li>
@@ -48,7 +40,7 @@
       </ul>
       <ul>
       <% I18n.available_locales.each do |locale| %>
-      <li><%= link_to locale, home_path(locale: locale) %>
+      <li><%= link_to locale, url_for(locale: locale) %>
       </li>
       <% end %>
       </ul>

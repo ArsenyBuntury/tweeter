@@ -1,9 +1,10 @@
 class TwitsController < ApplicationController
 include TwitsComments
   before_action :load_twit!, only: %w[show edit update destroy]
+  before_action :fetch_tags, only: %i[new edit]
 
   def index
-    @twits = Twit.order(created_at: :desc).page params[:page]
+    @twits = Twit.order(created_at: :desc).all_by_tags(params[:tag_ids]).page params[:page]
   end
 
   def new
@@ -43,10 +44,14 @@ include TwitsComments
   private 
 
   def twit_params
-    params.require(:twit).permit(:name, :body)
+    params.require(:twit).permit(:name, :body, tag_ids: [])
   end
 
   def load_twit!
     @twit = Twit.find(params[:id])
+  end
+
+  def fetch_tags
+    @tags= Tag.all
   end
 end
