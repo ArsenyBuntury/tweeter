@@ -8,7 +8,7 @@
 	<%= render @twit.tags%>
 	</div>
 	
-	<hr> <%= button_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
+	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
 	<hr><%= button_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
 		
 		<hr><div><strong><%=t('twit.user')%></strong></div><%= current_user.name_or_email%>
