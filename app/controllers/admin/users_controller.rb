@@ -1,35 +1,32 @@
-class Admin::UsersController < ApplicationController
-before_action :require_authentication
-before_action :set_user!
+# frozen_string_literal: true
 
-def index
-	
-	@user = User.find(params[:id])
-	
-	binding.pry
-	
-end
+module Admin
+  class UsersController < ApplicationController
+    before_action :require_authentication
+    before_action :set_user!
 
-def edit
-	
-end
+    def index
+      @user = User.find(params[:id])
+    end
 
-def update
-	if @user.update user_params
-		flash[:success] = 'Success!'
-		redirect_to admin_users_path
-	else
-		render :edit
-	end
-end
+    def edit; end
 
-def set_user!
-	@user=User.find params[:id]
-end
+    def update
+      if @user.update user_params
+        flash[:success] = 'Success!'
+        redirect_to admin_users_path
+      else
+        render :edit
+      end
+    end
 
-def user_params
-	params.require(:user).permit(:email, :name, :password,
-	 :password_confirmation)
-end
+    def set_user!
+      @user = User.find params[:id]
+    end
 
+    def user_params
+      params.require(:user).permit(:email, :name, :password,
+                                   :password_confirmation)
+    end
+  end
 end

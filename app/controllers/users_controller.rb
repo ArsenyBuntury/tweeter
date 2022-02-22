@@ -1,8 +1,12 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   require 'pry'
   before_action :require_no_authentification, only: %i[new create]
   # before_action :require_authentification, only: %i[edit update]
   before_action :set_user!, only: %i[edit update]
+  before_action :authorize_user!
+  after_action :verify_authorized
 
   def new
     @user = User.new
@@ -29,7 +33,7 @@ class UsersController < ApplicationController
     end
   end
 
-  private 
+  private
 
   def user_params
     params.require(:user).permit(:email, :name, :password, :password_confirmation, :old_password)
@@ -37,5 +41,9 @@ class UsersController < ApplicationController
 
   def set_user!
     @user = User.find(params[:id])
+  end
+
+  def authorize_user!
+    authorize(@user || User)
   end
 end

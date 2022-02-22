@@ -1,6 +1,8 @@
-class Tag < ApplicationRecord
-    has_many :twit_tags, dependent: :destroy
-    has_many :twits, through: :twit_tags
+# frozen_string_literal: true
 
-    validates :title, presence: true, uniqueness: true
+class Tag < ApplicationRecord
+  has_many :twit_tags, dependent: :destroy
+  has_many :twits, through: :twit_tags
+
+  validates :title, presence: true, uniqueness: true
 end

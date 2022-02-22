@@ -1,7 +1,11 @@
+# frozen_string_literal: true
+
 class CommentsController < ApplicationController
-include TwitsComments
+  include TwitsComments
   before_action :load_twit!
-  
+  before_action :authorize_comment!
+  after_action :verify_authorized
+
   def create
     @comment = @twit.comments.build(comment_create_params)
     if @comment.save
@@ -28,18 +32,18 @@ include TwitsComments
   end
 
   def destroy
-    comment = @twit.comments.find(params[:id]) 
-    
+    comment = @twit.comments.find(params[:id])
+
     comment.destroy
     flash[:success] = 'Comment deleted!'
     redirect_to twit_path(@twit)
   end
 
   private
-  
+
   def comment_create_params
     params.require(:comment).permit(:commenter, :body).merge(user_id: current_user.id)
-  end 
+  end
 
   def comment_update_params
     params.require(:comment).permit(:commenter, :body)
@@ -47,5 +51,9 @@ include TwitsComments
 
   def load_twit!
     @twit = Twit.find(params[:twit_id])
+  end
+
+  def authorize_comment!
+    authorize(@comment || Comment)
   end
 end

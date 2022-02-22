@@ -7,18 +7,20 @@
 <div class="my-2">
 	<%= render @twit.tags%>
 	</div>
-	
+		<% if policy(@twit).edit? %>
 	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
+		<% end %>
+		<% if policy(@twit).destroy? %>
 	<hr><%= button_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
-		
+		<% end %>
 		<hr><div><strong><%=t('twit.user')%></strong></div><%= current_user.name_or_email%>
 
-		<h5>Add your comment :</h5>
+		<h5><%=t('twit.addcomment')%></h5>
 		
 
 	<%= render "comments/form"%>
 
-	<h5>Comments :</h5>
+	<h5><%=t('twit.comments')%></h5>
 
 	<%= paginate @comments %>
 	<% @comments.each do |comment| %>
@@ -28,7 +30,9 @@
 	<p>
 		<strong><%=comment.body%></strong>	
 	</p>
-	<%= button_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
+	<% if policy(comment).destroy? %>
+		<%= button_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
+	<% end %>
 	<% end %>
 
 	

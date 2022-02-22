@@ -1,11 +1,16 @@
+# frozen_string_literal: true
+
 class TwitsController < ApplicationController
-include TwitsComments
-  before_action :load_twit!, only: %w[show edit update destroy]
+  include TwitsComments
+  before_action :require_authentication, except: %i[show index]
+  before_action :load_twit!, only: %i[show edit update destroy]
   before_action :fetch_tags, only: %i[new edit]
+  before_action :authorize_twit!
+  after_action :verify_authorized
 
   def index
     @twits = Twit.order(created_at: :desc).all_by_tags(params[:tag_ids]).page params[:page]
-    @tags=Tag.all
+    @tags = Tag.all
   end
 
   def new
@@ -19,7 +24,7 @@ include TwitsComments
 
   def create
     @twit = current_user.twits.build(twit_params)
-    flash[:success]="Success!"
+    flash[:success] = 'Success!'
     if @twit.save
       redirect_to @twit
     else
@@ -42,7 +47,7 @@ include TwitsComments
     redirect_to twits_path, status: :see_other
   end
 
-  private 
+  private
 
   def twit_params
     params.require(:twit).permit(:name, :body, tag_ids: [])
@@ -53,6 +58,10 @@ include TwitsComments
   end
 
   def fetch_tags
-    @tags= Tag.all
+    @tags = Tag.all
+  end
+
+  def authorize_twit!
+    authorize(@twit || Twit)
   end
 end

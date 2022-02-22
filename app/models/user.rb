@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class User < ApplicationRecord
-  enum role: { basic: 0, moderator: 1, admin: 2}, _suffix: :role
+  enum role: { basic: 0, moderator: 1, admin: 2 }, _suffix: :role
   attr_accessor :old_password, :remember_token
 
   has_secure_password validations: false
@@ -13,7 +15,13 @@ class User < ApplicationRecord
 
   validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
 
-  
+  def guest?
+    false
+  end
+
+  def author?(obj)
+    obj.user == self
+  end
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
@@ -56,5 +64,4 @@ class User < ApplicationRecord
     errors.add :password,
                'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end
-
 end

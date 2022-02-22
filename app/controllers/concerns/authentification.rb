@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Authentification
   extend ActiveSupport::Concern
   require 'pry'

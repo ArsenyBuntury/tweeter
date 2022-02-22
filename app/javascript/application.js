@@ -5,6 +5,5 @@
 //= require bootstrap-sprockets 
 //= require popper
 
-import './scripts/select'
-import 'tom-select/dist/css/tom-select.bootstrap5';
+import './scripts/select2'
 

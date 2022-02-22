@@ -20,8 +20,8 @@
 	</div>
 
 	<div class="col-sm-10">
-	<%= form.collection_select :tag_ids, tags, :id, :title, {}, multiple: true, 
-	class: 'js-multiple-select w-100'%>
+	<%= form.collection_select :tag_ids, @tags, :id, :title, {}, multiple: true, 
+	class: 'js-multiple-select w-90', data: {'ajax-url': '/api/tags'}%>
 		</div>
 	</div>
 	<p>

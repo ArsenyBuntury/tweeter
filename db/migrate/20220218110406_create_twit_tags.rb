@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTwitTags < ActiveRecord::Migration[7.0]
   def change
     create_table :twit_tags do |t|
@@ -6,6 +8,6 @@ class CreateTwitTags < ActiveRecord::Migration[7.0]
 
       t.timestamps
     end
-    add_index :twit_tags, [:twit_id, :tag_id], unique: true 
+    add_index :twit_tags, %i[twit_id tag_id], unique: true
   end
 end

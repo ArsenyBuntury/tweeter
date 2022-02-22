@@ -9,7 +9,7 @@
 	<%= form.label :query, t('menu.search_for') %>
 	<%= form.collection_select :tag_ids, @tags, :id, :title, {selected: params[:tag_ids]},
 	multiple: true, required: true,
-	class: 'js-multiple-select w-100' %>
+	class: 'js-multiple-select w-100', data: {'ajax-url': '/api/tags'} %>
 	<%= form.submit t('menu.search') %></tr>
 	<%= paginate @twits %>
 

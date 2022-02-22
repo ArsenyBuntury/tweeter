@@ -1,6 +1,8 @@
 en:
   twit:
     user: "You can keep being anonymous or use your name : "
+    comments: "Comments: "
+    addcomment: "Add your comment: "
 
 
   menu:
@@ -21,3 +23,5 @@ en:
       edit: Change
       show: Show
       submit: Submit 
+    flash:
+      not_authorized:  Error! You are not authorized.
