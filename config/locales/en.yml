@@ -4,6 +4,7 @@ en:
 
 
   menu:
+    autorize: "Please log in or sign up to see all posts"
     twits: "All twits"
     create: "Create twit"
     search: "Search"

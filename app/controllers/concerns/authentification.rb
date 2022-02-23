@@ -1,6 +1,5 @@
 module Authentification
   extend ActiveSupport::Concern
-  require 'pry'
   included do
     private
 
