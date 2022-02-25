@@ -15,15 +15,16 @@
 	<h2><%=t('menu.autorize')%></h2>
 	<% end %>
 </table>
-<ul>
+<ul class="q">
 	<% if user_signed_in? %>
 	<% @twits.each do |twit| %>
-	<li>
+	<li class="a">
 		
 		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
 		<ul>
-		<%= truncate strip_tags(twit.body), length: 200 %>
+		<%= truncate strip_tags(twit.body)%>
 	</ul>
+	<%= link_to "show twit", twit, class: "btn btn-info"%>
 	</li>
 	<%end%>
 	</ul>

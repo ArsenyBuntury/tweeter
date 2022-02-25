@@ -16,3 +16,21 @@
 
 @import "bootstrap";
 
+.q{
+    list-style-type: none;
+    height: 100%;   
+    padding: 12px;   
+    margin: 12px;    
+    display: flex;   
+    align-items: center;   
+    justify-content: center;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-direction: column;
+    text-align: center;
+}
+
+.a{
+    box-shadow: 0.4em 0.4em 5px rgba(122,122,122,0.5);
+}
