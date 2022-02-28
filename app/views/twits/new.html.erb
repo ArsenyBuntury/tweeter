@@ -1,5 +1,5 @@
 <% provide :page_title, 'New twit' %>
 <% currently_at %>
 
-<h2>Создание нового твита</h2>
+<h2><%= t('twit.new')%></h2>
 <%= render "form", twit: @twit, tags: @tags %>

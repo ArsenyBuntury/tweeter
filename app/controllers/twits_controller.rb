@@ -5,6 +5,7 @@ include TwitsComments
 
   def index
     @twits = Twit.order(created_at: :desc).all_by_tags(params[:tag_ids]).page params[:page]
+    @tags = Tag.all
   end
 
   def new

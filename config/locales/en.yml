@@ -1,7 +1,28 @@
 en:
   twit:
     user: "You can keep being anonymous or use your name : "
+    edit: "Edit twit"
+    delete: "Delete twit"
+    add_comment: "Add your comment: "
+    comments: "All comments"
+    submit_comment: "Submit!"
+    name: "Username"
+    twit: "Twit"
+    new: "Create new twit"
+  
+  comment:
+    username: "Username "
+    comment: "Comment"
 
+  session:
+    reg: "Registration"
+    email: "Your email"
+    password: "Your password"
+    remember: "Remember me"
+    login: "Log in"
+    name: "Your name"
+    confirmpass: "Password confirmation"
+    oldpass: "Old password"
 
   menu:
     autorize: "Please log in or sign up to see all posts"
@@ -16,6 +37,7 @@ en:
     login: "Log in"
     signup: "Sign up"
     greetings: "Hi, "
+    showtwit: "Show twit"
   global:
     button:
       delete: Delete

@@ -6,15 +6,15 @@
 	<% end %>
 	<% end %>
 	<p>
-		Username<br>
+		<%= t('comment.username')%><br>
 		<%= f.text_field(:commenter,{:class => "form-control"}) %>
 		
 	</p>
 	<p>
-		Your comment<br>
+		<%= t('comment.comment')%><br>
 		<%= f.text_area(:body,{:class => "form-control"})%>
 	</p>
 	<p>
-		<%= f.submit("Add your comment",{:class => "btn btn-success"})%>
+		<%= f.submit(t('twit.submit_comment'),{:class => "btn btn-success"})%>
 	</p>
 	<% end %>

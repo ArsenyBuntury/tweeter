@@ -5,11 +5,10 @@
 <h2><%=t('menu.twits')%></h2>
 <%= link_to t('menu.create'), new_twit_path, class: "btn btn-aware" %></tr>
 <tr>&#160 &#160 &#160</tr> 
-<tr><%= form_with url: "/search", method: :get do |form| %>
-	<%= form.label :query, t('menu.search_for') %>
-	<%= form.text_field :query %>
-	<%= form.submit t('menu.search') %></tr>
-	<%= paginate @twits %>
+<tr><%= form_with url: twits_path, method: :get do |form| %>
+	<%= form.collection_select :tag_ids, @tags, :id, :title, {selected: params[:tag_ids]}, 
+	multiple: true, required: true, class: 'js-multiple-select w-100' %>
+	<%= form.submit t('menu.search'), class: 'btn btn-primary'%>
 	<% end %>
 	<% else %>
 	<h2><%=t('menu.autorize')%></h2>
@@ -17,6 +16,7 @@
 </table>
 <ul class="q">
 	<% if user_signed_in? %>
+	<%= paginate @twits %>
 	<% @twits.each do |twit| %>
 	<li class="a">
 		
@@ -24,7 +24,7 @@
 		<ul>
 		<%= truncate strip_tags(twit.body)%>
 	</ul>
-	<%= link_to "show twit", twit, class: "btn btn-info"%>
+	<%= link_to t('menu.showtwit'), twit, class: "btn btn-info"%>
 	</li>
 	<%end%>
 	</ul>

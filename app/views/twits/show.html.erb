@@ -8,17 +8,17 @@
 	<%= render @twit.tags%>
 	</div>
 	
-	<hr> <%= link_to "Edit twit", edit_twit_path(@twit), :class=>'btn btn-success' %>
-	<%= link_to "Destroy", twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
+	<hr> <%= link_to t('twit.edit'), edit_twit_path(@twit), :class=>'btn btn-success' %>
+	<%= link_to t('twit.delete'), twit_path(@twit), data: {confirm:"Are you sure?"}, method: :delete, class:'btn btn-danger'%>
 		
 		<hr><div><strong><%=t('twit.user')%></strong></div><%= current_user.name_or_email%>
 
-		<h5>Add your comment :</h5>
+		<h5><%= t('twit.add_comment') %></h5>
 		
 
 	<%= render "comments/form"%>
 
-	<h5>Comments :</h5>
+	<h5><%= t('twit.comments')%> :</h5>
 
 	<%= paginate @comments %>
 	<% @comments.each do |comment| %>

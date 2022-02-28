@@ -1,7 +1,7 @@
 
 <%= form_with model: @user do |form|%>
 	<p>
-		<%= form.label :email,"Your email"%> <br>
+		<%= t('session.email')%> <br>
 		<%= form.email_field :email, value: params[:email],
 		class: 'form-control form-control-lg' %>
 		<% @user.errors.full_messages_for(:email).each do |message| %>
@@ -11,7 +11,7 @@
 	</p>
 
 	<p>
-		<%= form.label :name,"Your name"%> <br>
+		<%= t('session.name')%> <br>
 		<%= form.text_field :name, class: 'form-control form-control-lg' %>
 		<% @user.errors.full_messages_for(:name).each do |message| %>
 		<div class="alert alert-danger"><%= message %></div>
@@ -20,7 +20,7 @@
 
 	<p>
 
-		<%= form.label :password,"New password"%> <br>
+		<%= t('session.password')%> <br>
 		<%= form.password_field :password, class: 'form-control form-control-lg' %>
 		<% @user.errors.full_messages_for(:password).each do |message| %>
 		<div class="alert alert-danger"><%= message %></div>
@@ -28,7 +28,7 @@
 	</p>
 
 	<p>
-		<%= form.label :password_confirmation%> <br>
+		<%= t('session.confirmpass')%> <br>
 		<%= form.password_field :password_confirmation, class: 'form-control form-control-lg' %>
 		<% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
 		<div class="alert alert-danger"><%= message %></div>
@@ -36,7 +36,7 @@
 	</p>
 	<% unless @user.new_record? %>
 	<p>
-		<%= form.label :old_password%> <br>
+		<%= t('session.oldpass')%> <br>
 		<%= form.password_field :old_password, class: 'form-control form-control-lg' %>
 		<% @user.errors.full_messages_for(:old_password).each do |message| %>
 		<div class="alert alert-danger"><%= message %></div>
