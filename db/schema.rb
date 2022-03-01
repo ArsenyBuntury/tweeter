@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_02_18_110406) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_01_154310) do
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
@@ -66,6 +66,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_02_18_110406) do
     t.datetime "updated_at", null: false
     t.string "remember_token_digest"
     t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "comments", "twits"
