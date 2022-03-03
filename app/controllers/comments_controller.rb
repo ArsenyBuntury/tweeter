@@ -9,7 +9,8 @@ include TwitsComments
       redirect_to twit_path(@twit)
 
     else
-      @comments = @twit.comments.order created_at: :desc
+      redirect_to twit_path(@twit)
+      flash[:alert]= 'Error!'
 
     end
   end

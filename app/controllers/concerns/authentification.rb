@@ -5,7 +5,7 @@ module Authentification
 
     def current_user
       if session[:user_id].present?
-        @current_user ||= User.find_by(id: session[:user_id]).decorate
+        set_user_id!.decorate
       elsif cookies.encrypted[:user_id].present?
         user = User.find_by(id: session[:user_id])
         if user&.remember_token_authenticated?(cookies.encrypted[:remember_token])
@@ -52,6 +52,11 @@ module Authentification
       forget current_user
       session.delete :user_id
       @current_user = nil
+    end
+
+    def set_user_id!
+      @current_user ||=User.find_by(id: session[:user_id]).decorate
+      
     end
 
     helper_method :current_user, :user_signed_in?

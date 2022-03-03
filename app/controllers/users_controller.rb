@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   require 'pry'
   before_action :require_no_authentification, only: %i[new create]
-  # before_action :require_authentification, only: %i[edit update]
   before_action :set_user!, only: %i[edit update]
 
   def new
@@ -38,4 +37,6 @@ class UsersController < ApplicationController
   def set_user!
     @user = User.find(params[:id])
   end
+
+  helper_method :set_user!
 end
