@@ -32,6 +32,8 @@ RSpec.describe "/widgets", type: :request do
     end
   end
 
+  describe 
+
   describe "GET /show" do
     it "renders a successful response" do
       widget = Widget.create! valid_attributes

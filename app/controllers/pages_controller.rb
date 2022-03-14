@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def about
-    @aboutus = 'Всем привет! Я начинающий руби разработчик. Вы находитесь на моем клоне твиттера.'
+    @aboutus = t('about.aboutus')
   end
 
   def contacts; end

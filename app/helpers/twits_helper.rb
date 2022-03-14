@@ -1,2 +1,0 @@
-module TwitsHelper
-end

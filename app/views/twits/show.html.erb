@@ -1,7 +1,6 @@
 <% provide :page_title, 'Twit' %>
 <% currently_at %>
 
-
 <h2> <%= @twit.name %></h2>
 <div> <%= sanitize @twit.body %></div>
 <div class="my-2">
@@ -31,20 +30,4 @@
 	<%= link_to 'Delete', twit_comment_path(@twit,comment), class: 'btn btn-danger btn-xs',data:{ confirm:"Are you sure?"}, method: :delete %>
 	<% end %>
 
-	
 	<%= paginate @comments %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

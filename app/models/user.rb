@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validate :correct_old_password, on: :update, if: -> { password.present? }
   validates :password, confirmation: true, allow_blank: true
 
-  validates :email, presence: true, uniqueness: true, 'valid_email_2/email': true
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   
 

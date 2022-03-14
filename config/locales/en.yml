@@ -44,3 +44,9 @@ en:
       edit: Change
       show: Show
       submit: Submit 
+  about:
+    aboutus: "Hi! My name is Arseny and I`m new to Ruby on Rails framework.
+     You are on my first website."
+  contact:
+    contactus: "Here you can check for my social links"
+    vk: "Vkontakte"

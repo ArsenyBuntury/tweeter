@@ -2,6 +2,13 @@ require:
   - rubocop-rails
   - rubocop-performance
 
+Exclude:
+  - "node_modules/**/*"
+  - "vendor/**/*"
+  - ".git/**/*"
+  - "tmp/**/*"
+  - "db/schema.rb"
+
 AllCops:
   NewCops: enable
   TargetRubyVersion: 3.0
@@ -11,3 +18,5 @@ Style/Documentation:
 
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+DisabledByDefault: false

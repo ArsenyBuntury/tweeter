@@ -14,7 +14,7 @@
 	<h2><%=t('menu.autorize')%></h2>
 	<% end %>
 </table>
-<ul class="q">
+<ul class="main">
 	<% if user_signed_in? %>
 	<%= paginate @twits %>
 	<% @twits.each do |twit| %>
