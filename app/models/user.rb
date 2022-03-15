@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  attr_accessor :old_password, :remember_token
-
+  attr_accessor :old_password, :remember_token, :activation_token
+  before_create :create_activation_digest
   has_secure_password validations: false
 
   has_many :twits, dependent: :destroy
@@ -9,8 +9,8 @@ class User < ApplicationRecord
   validates :password, presence: true
   validate :correct_old_password, on: :update, if: -> { password.present? }
   validates :password, confirmation: true, allow_blank: true
-
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
+  validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
   
 
@@ -54,6 +54,13 @@ class User < ApplicationRecord
 
     errors.add :password,
                'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
+  end
+
+  private 
+
+  def create_activation_digest
+    self.activation_token = User.new_token
+    self.activation_digest = User.digest(activation_token)
   end
 
 end

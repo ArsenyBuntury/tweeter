@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   require 'pry'
   before_action :require_no_authentification, only: %i[new create]
-  before_action :set_user!, only: %i[edit update]
+  before_action :set_user!, only: %i[edit update show]
 
   def new
     @user = User.new
@@ -26,6 +26,9 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+  end
+
+  def show
   end
 
   private 
