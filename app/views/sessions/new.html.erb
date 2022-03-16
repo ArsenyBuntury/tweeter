@@ -1,6 +1,6 @@
 <% provide :page_title, 'Log in' %>
 <% currently_at %>
-
+<div class="main">
 <h1 class="mb-4"><%= t('session.login') %></h1>
 
 <%= form_with url: session_path do |form|%>
@@ -22,3 +22,4 @@
 			
 		</p>
 	<% end %>
+	</div>

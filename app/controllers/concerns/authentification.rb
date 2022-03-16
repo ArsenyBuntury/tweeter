@@ -4,7 +4,7 @@ module Authentification
     private
 
     def current_user
-      if session[:user_id].present?
+      if session[:user_id]
         set_user_id!.decorate
       elsif cookies.encrypted[:user_id].present?
         user = User.find_by(id: session[:user_id])
