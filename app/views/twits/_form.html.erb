@@ -1,0 +1,30 @@
+
+<%= form_with model: twit do |form|%>
+	<p>
+		<%= t('twit.name')%> <br>
+		<%= form.text_field :name %>
+		<% twit.errors.full_messages_for(:name).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+	<p>
+		<%= t('twit.twit')%> <br>
+		<%= form.text_area :body %>
+		<% twit.errors.full_messages_for(:body).each do |message| %>
+		<div class="alert alert-danger"><%=message%></div>
+		<% end %>
+	</p>
+	<div class="mb-3 row">
+	<div class="col-sm-2 col-form-label">
+	<%= form.label :tags %>
+	</div>
+
+	<div class="col-sm-10">
+	<%= form.collection_select :tag_ids, tags, :id, :title, {}, multiple: true %>
+	</div>
+	</div>
+	<p>
+		
+		<%= form.submit({:class=>'btn btn-succes'}) %>
+	</p>
+	<% end %>

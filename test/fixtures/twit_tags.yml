@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  twit: one
+  tag: one
+
+two:
+  twit: two
+  tag: two

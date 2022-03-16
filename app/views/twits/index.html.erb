@@ -1,0 +1,36 @@
+<% provide :page_title, t('menu.twits')%>
+<% currently_at %>
+<table>
+<tr> <% if user_signed_in? %>
+<h2><%=t('menu.twits')%></h2>
+<%= link_to t('menu.create'), new_twit_path, class: "btn btn-aware" %></tr>
+<tr>&#160 &#160 &#160</tr> 
+<tr><%= form_with url: twits_path, method: :get do |form| %>
+	<%= form.collection_select :tag_ids, @tags, :id, :title, {selected: params[:tag_ids]}, 
+	multiple: true, required: true, class: 'js-multiple-select w-100' %>
+	<%= form.submit t('menu.search'), class: 'btn btn-primary'%>
+	<% end %>
+	<% else %>
+	<h2><%=t('menu.autorize')%></h2>
+	<% end %>
+</table>
+<ul class="main">
+	<% if user_signed_in? %>
+	<%= paginate @twits %>
+	<% @twits.each do |twit| %>
+	<li class="a">
+		
+		<%= link_to twit.name, twit , class: "text-decoration-none, btn btn-create"%>
+		<ul>
+		<%= truncate strip_tags(twit.body)%>
+	</ul>
+	<%= link_to t('menu.showtwit'), twit, class: "btn btn-info"%>
+	</li>
+	<%end%>
+	</ul>
+	
+	
+	
+
+	<%= paginate @twits %>
+	<% end %>

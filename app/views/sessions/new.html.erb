@@ -1,0 +1,24 @@
+<% provide :page_title, 'Log in' %>
+<% currently_at %>
+
+<h1 class="mb-4"><%= t('session.login') %></h1>
+
+<%= form_with url: session_path do |form|%>
+	<p><%= t('session.email')%> <br>
+		<%= form.email_field :email, class: 'form-control form-control-lg' %>
+
+	</p>
+	<p><%= t('session.password')%> <br>
+		<%= form.password_field :password, class: 'form-control form-control-lg' %>
+	</p>
+
+		<div class="form-check">
+	<%= form.check_box  :remember_me%>
+	<%= form.label t('session.remember'), class: 'form-check-label'%>
+			</div>
+	<p>
+		
+		<%= form.submit t('session.login'), class: 'btn btn-primary btn-lg'%>
+			
+		</p>
+	<% end %>
