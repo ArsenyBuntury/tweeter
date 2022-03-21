@@ -1,0 +1,12 @@
+<% provide :page_title, "All users" %>
+<h1>All users</h1>
+    <%= paginate @users %>  
+<ul class="users">
+    <% @users.each do |user| %>
+    <li>
+        <%= link_to user.name, user %>
+        </li>
+        <% end %>
+    </ul>
+    <%= paginate @users %>
+    

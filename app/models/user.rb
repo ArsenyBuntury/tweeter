@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token, :activation_token
-  before_create :create_activation_digest
+  #before_create :create_activation_digest
   has_secure_password validations: false
 
   has_many :twits, dependent: :destroy
@@ -12,7 +12,10 @@ class User < ApplicationRecord
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
   validates :email, presence: true, uniqueness: true, format: { with: VALID_EMAIL_REGEX }
 
-  
+  def authenticated?(remember_token)
+    return false if remember_token_digest.nil?
+    BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
+  end
 
   def remember_me
     self.remember_token = SecureRandom.urlsafe_base64
@@ -46,6 +49,10 @@ class User < ApplicationRecord
     return if BCrypt::Password.new(password_digest_was).is_password?(old_password)
 
     errors.add :old_password, 'is incorrect'
+  end
+
+  def User.new_token
+    SecureRandom.urlsafe_base64
   end
 
   def password_complexity

@@ -50,3 +50,6 @@ en:
   contact:
     contactus: "Here you can check for my social links"
     vk: "Vkontakte"
+profile:
+  edit:
+    goback: "Вернуться назад"
