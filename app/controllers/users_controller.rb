@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   require 'pry'
   before_action :require_no_authentification, only: %i[new create]
-  before_action :set_user!, only: %i[edit  update ]
+  before_action :set_user!, only: %i[edit destroy update ]
   before_action :correct_user, only: [:edit, :update]
-  #before_action :logged_in_user, only: [:edit, :update]
+  before_action :admin_user, only: :destroy
   def new
     @user = User.new
   end
@@ -39,6 +39,12 @@ class UsersController < ApplicationController
 
   end
 
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User deleted!"
+    redirect_to users_path
+  end
+
   private 
 
   def user_params
@@ -52,6 +58,10 @@ class UsersController < ApplicationController
   def correct_user
     set_user!
     redirect_to home_path unless @user == current_user
+  end
+
+  def admin_user
+    redirect_to(home_path) unless current_user.admin?
   end
 
   helper_method :set_user!
