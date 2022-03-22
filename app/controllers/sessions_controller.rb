@@ -4,16 +4,22 @@ class SessionsController < ApplicationController
   def new; end
 
   def create
-    user = User.find_by email: params[:email]
+    user = User.find_by(email: params[:email])
     if user&.authenticate(params[:password])
+      if user.activated?
       sign_in user
-      remember(user) if params[:remember_me] == '1'
-      session[:user_id] = user.id
-      redirect_to home_path
+      params[:remember_me] == '1' ? remember(user) : forget(user)
+      redirect_back_or_to user
+      else 
+        message = "Account not activated!"
+        message = "Check your email for the activation link"
+        flash[:warning] = message
+        redirect_to home_path
+      end
     else
       flash.alert = 'Incorrect email and/or password'
       redirect_to new_session_path
-    end
+      end
   end
 
   def destroy

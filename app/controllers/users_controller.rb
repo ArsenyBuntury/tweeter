@@ -11,6 +11,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your account."
       session[:user_id] = @user.id
       redirect_to home_path
     else
@@ -32,11 +34,13 @@ class UsersController < ApplicationController
   end
 
   def index
+    @users = User.where(activated: true).page params[:page]
     @users = User.all.page params[:page]
   end
 
   def show
-
+    @user = User.find(params[:id])
+    redirect_to home_path and return unless FILL_IN
   end
 
   def destroy

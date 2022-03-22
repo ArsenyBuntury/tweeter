@@ -1,13 +1,14 @@
 <% provide :page_title, "All users" %>
 <h1>All users</h1>
     <%= paginate @users %>  
+    <%= link_to "Go back", home_path, class:'btn btn-info' %>
 <ul class="users">
     <% @users.each do |user| %>
     <li>
         <%= link_to user.name, user %>
         <% if current_user.admin? && current_user=user %>
         | <%= link_to "delete", user, method: :delete, 
-                                        data: {confirm: "Are you sure?"} %>
+                                        data: {confirm: "Are you sure?"}, class:"btn btn-danger" %>
          <% end %>
         </li>
         <% end %>
