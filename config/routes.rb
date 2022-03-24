@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'password_resets/new'
+  get 'password_resets/edit'
   resources :widgets
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
   resources :users
@@ -18,4 +20,5 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   end
 
+  resources :password_resets, only: [:new, :create, :edit, :update]
 end

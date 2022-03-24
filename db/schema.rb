@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_21_105749) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_21_105749) do
     t.boolean "activated", default: false
     t.datetime "activated_at"
     t.boolean "admin", default: false
+    t.string "reset_digest"
+    t.datetime "reset_sent_at"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

@@ -9,6 +9,7 @@
 
 	</p>
 	<p><%= t('session.password')%> <br>
+		<%= link_to "(forgot password?)", new_password_reset_path %>
 		<%= form.password_field :password, class: 'form-control form-control-lg' %>
 	</p>
 
