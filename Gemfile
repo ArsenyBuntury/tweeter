@@ -15,6 +15,7 @@ gem 'rails-i18n'
 # Use sqlite3 as the database for Active Record
 
 
+gem 'pg'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
 
@@ -61,11 +62,11 @@ group :development, :test do
   gem 'faker', '~>2'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rails-controller-testing'
-  gem 'sqlite3'
+  
 end
 
 group :production do
-  gem 'pg'
+  
 end
 
 group :development do
