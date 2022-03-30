@@ -12,7 +12,6 @@ gem 'sprockets-rails'
 gem 'sass-rails', '>=6'
 
 gem 'rails-i18n'
-# Use sqlite3 as the database for Active Record
 
 
 gem 'pg'
@@ -62,7 +61,7 @@ group :development, :test do
   gem 'faker', '~>2'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rails-controller-testing'
-  
+ 
 end
 
 group :production do
