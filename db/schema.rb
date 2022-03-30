@@ -11,13 +11,16 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "comments", force: :cascade do |t|
     t.string "commenter"
     t.text "body"
-    t.integer "twit_id", null: false
+    t.bigint "twit_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["twit_id"], name: "index_comments_on_twit_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
@@ -25,8 +28,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
   create_table "subcomments", force: :cascade do |t|
     t.string "body"
     t.string "commentable_type", null: false
-    t.integer "commentable_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "commentable_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["commentable_type", "commentable_id"], name: "index_subcomments_on_commentable"
@@ -40,8 +43,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
   end
 
   create_table "twit_tags", force: :cascade do |t|
-    t.integer "twit_id", null: false
-    t.integer "tag_id", null: false
+    t.bigint "twit_id", null: false
+    t.bigint "tag_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["tag_id"], name: "index_twit_tags_on_tag_id"
@@ -54,7 +57,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
     t.text "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_twits_on_user_id"
   end
 
