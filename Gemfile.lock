@@ -342,6 +342,9 @@ DEPENDENCIES
   jbuilder
   jquery-rails
   kaminari (~> 1.2)
+  net-imap
+  net-pop
+  net-smtp
   pg
   pry
   puma (~> 5.0)
