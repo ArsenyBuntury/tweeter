@@ -11,6 +11,8 @@ module Twitter
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
     config.autoloader = :classic
+    config.action_mailer.preview_path = "#{Rails.root}spec/mailers/previews"
+    Rails.autoloaders.main.ignore(Rails.root.join('spec/mailers/previews'))
     config.i18n.available_locales = %i[en ru]
     config.i18n.default_locale = :ru
     # Configuration for the application, engines, and railties goes here.
