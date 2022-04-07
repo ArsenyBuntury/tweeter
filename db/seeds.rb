@@ -11,7 +11,7 @@
 
 # Create a main sample user
 User.create!(name: "Example User",
-            email: "bob@bob.com",
+            email: "bob@gmail.com",
             password: "1234",
             password_confirmation: "1234",
             admin: true,

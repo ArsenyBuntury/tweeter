@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
   resources :users
   resource :session, only: %i[new create destroy]
-  resources :account_activations, only: [:edit]
   root 'twits#index', as: 'home'
   get 'about' => 'pages#about'
   get 'contacts' => 'pages#contacts'
@@ -16,9 +15,7 @@ Rails.application.routes.draw do
   resources :comments, only: %i[create destroy] do
     resources :subcomments, only: %i[create destroy]
   end
-
   resources :account_activations, only: [:edit]
-  end
-
   resources :password_resets, only: [:new, :create, :edit, :update]
+end
 end

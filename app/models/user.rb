@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :old_password, :remember_token, :activation_token, :reset_token
-  #before_create :create_activation_digest
+  before_save :downcase_email
+  before_create :create_activation_digest
   has_secure_password validations: false
 
   has_many :twits, dependent: :destroy
@@ -18,8 +19,12 @@ class User < ApplicationRecord
     BCrypt::Password.new(digest).is_password?(token)
   end
 
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+  
   def activate
-    update_attribute(:activated, true)
+    update_attribute(:activated,    true)
     update_attribute(:activated_at, Time.zone.now)
   end
 
@@ -51,13 +56,9 @@ class User < ApplicationRecord
     self.remember_token = nil
   end
 
-  def digest(string)
-    cost = if ActiveModel::SecurePassword
-              .min_cost
-             BCrypt::Engine::MIN_COST
-           else
-             BCrypt::Engine.cost
-           end
+  def User.digest(string)
+    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
+                                                  BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
 
@@ -75,10 +76,6 @@ class User < ApplicationRecord
     errors.add :old_password, 'is incorrect'
   end
 
-  def User.new_token
-    SecureRandom.urlsafe_base64
-  end
-
   def password_complexity
     # Regexp extracted from https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     return if password.blank? || password =~ /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$/
@@ -87,7 +84,9 @@ class User < ApplicationRecord
                'Complexity requirement not met. Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character'
   end
 
-  private 
+  def downcase_email
+    self.email = email.downcase
+  end 
 
   def create_activation_digest
     self.activation_token = User.new_token
