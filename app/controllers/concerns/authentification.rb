@@ -19,6 +19,14 @@ module Authentification
       current_user.present?
     end
 
+    def logged_in_user
+      unless user_signed_in?
+        store_location
+        flash[:danger] = "Please log in"
+        redirect_to login_url
+     end
+    end
+
     def require_no_authentification
       return unless user_signed_in?
 

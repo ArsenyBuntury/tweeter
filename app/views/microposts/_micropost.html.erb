@@ -1,0 +1,9 @@
+<li id="micropost-<%= micropost.id %>">
+<%= link_to micropost.user.name, micropost.user %>
+<%= micropost.content %>
+<p> Posted <%= time_ago_in_words(micropost.created_at) %> ago. </p>
+<% if @user = (micropost.user) %>
+<%= link_to "delete", micropost, method: :delete,
+                                    data: { confirm: "You sure?" }%>
+                                    <% end %>
+</li>

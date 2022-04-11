@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :twits, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :microposts, dependent: :destroy
 
   validates :password, presence: true
   validate :correct_old_password, on: :update, if: -> { password.present? }
@@ -66,6 +67,10 @@ class User < ApplicationRecord
     return false unless remember_token_digest.present?
 
     BCrypt::Password.new(remember_token_digest).is_password?(remember_token)
+  end
+
+  def feed
+    Micropost.where("user_id = ?", id)
   end
 
   private

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
   before_action :set_user!, only: %i[edit destroy update ]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
   def new
     @user = User.new
   end
@@ -40,7 +41,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    redirect_to home_path and return unless FILL_IN
+    @micropost = current_user.microposts.build
+    @microposts = @user.microposts.page params[:page]
   end
 
   def destroy

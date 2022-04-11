@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_08_143549) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,15 +25,13 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "subcomments", force: :cascade do |t|
-    t.string "body"
-    t.string "commentable_type", null: false
-    t.bigint "commentable_id", null: false
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commentable_type", "commentable_id"], name: "index_subcomments_on_commentable"
-    t.index ["user_id"], name: "index_subcomments_on_user_id"
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
   end
 
   create_table "tags", force: :cascade do |t|
@@ -85,7 +83,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_075531) do
 
   add_foreign_key "comments", "twits"
   add_foreign_key "comments", "users"
-  add_foreign_key "subcomments", "comments", column: "user_id"
+  add_foreign_key "microposts", "users"
   add_foreign_key "twit_tags", "tags"
   add_foreign_key "twit_tags", "twits"
   add_foreign_key "twits", "users"
