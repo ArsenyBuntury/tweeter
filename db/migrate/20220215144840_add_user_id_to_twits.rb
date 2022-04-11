@@ -1,5 +1,5 @@
 class AddUserIdToTwits < ActiveRecord::Migration[7.0]
   def change
-    add_reference :twits, :user, null: false, foreign_key: true
+    add_reference :twits, :user, null: false, foreign_key: true, default: User.first.id
   end
 end
