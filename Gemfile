@@ -6,6 +6,8 @@ ruby '3.0.0'
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.1'
 
+gem 'image_processing', '1.9.3'
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
@@ -13,7 +15,9 @@ gem 'sass-rails', '>=6'
 
 gem 'rails-i18n'
 
+gem 'active_storage_validations', '0.8.2'
 
+gem 'mini_magick', '4.9.5'
 gem 'pg'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 5.0'
@@ -39,7 +43,7 @@ gem 'kaminari', '~>1.2'
 gem 'draper', '~>4.0'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 gem 'bcrypt', '~> 3.1.7'
-gem 'faker', '~>2'
+
 gem 'valid_email2'
 
 gem 'net-smtp', require: false
@@ -64,7 +68,7 @@ gem 'bootstrap', '~> 5.1.3'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
-  
+  gem 'faker', '~>2'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rails-controller-testing'
  
@@ -72,6 +76,7 @@ end
 
 group :production do
   
+  gem 'aws-sdk-s3', '1.46.0', require: false
 end
 
 group :development do
