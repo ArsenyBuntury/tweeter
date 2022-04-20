@@ -9,7 +9,9 @@ class MicropostsController < ApplicationController
             flash[:success] = "Micropost created!"
             redirect_to request.referrer
         else
-            @feed_items =  current_user.feed.page params([:page])
+            @feed_items =  current_user.feed.page params[:page]
+            flash[:danger] = "Micropost wasn't created! Probably it was empty or image has invalid format/size"
+            redirect_to request.referrer
         end
     end
 

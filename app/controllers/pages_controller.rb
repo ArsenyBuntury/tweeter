@@ -12,7 +12,6 @@ class PagesController < ApplicationController
   def home
     if sign_in?
       @micropost = current_user.micropost.build
-      @feed_items = current_user.feed.page params[:page]
     end
   end
 end

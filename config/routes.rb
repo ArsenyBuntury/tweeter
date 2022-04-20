@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   get 'password_resets/edit'
   resources :widgets
   scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
   resource :session, only: %i[new create destroy]
   root 'twits#index', as: 'home'
   get 'about' => 'pages#about'
@@ -18,5 +22,6 @@ Rails.application.routes.draw do
   resources :account_activations, only: [:edit]
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :microposts, only: [:create, :destroy]
+  resources :relationships, only: [:create, :destroy]
 end
 end

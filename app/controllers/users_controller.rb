@@ -1,10 +1,9 @@
 class UsersController < ApplicationController
-  require 'pry'
   before_action :require_no_authentification, only: %i[new create]
-  before_action :set_user!, only: %i[edit destroy update ]
+  before_action :set_user!, only: %i[edit destroy update followers following]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :followers, :following]
   def new
     @user = User.new
   end
@@ -43,6 +42,18 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @micropost = current_user.microposts.build
     @microposts = @user.microposts.page params[:page]
+  end
+
+  def followers
+    @title = "Followers"
+    @users = @user.followers.page params[:page]
+    render 'show_follow'
+  end
+
+  def following
+    @title = "Following"
+    @users = @user.following.page params[:page]
+    render 'show_follow'
   end
 
   def destroy
