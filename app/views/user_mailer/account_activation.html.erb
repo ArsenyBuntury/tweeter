@@ -4,4 +4,5 @@
 <p>
   Welcome to the Twitter Clone! Click on the link below to activate your account:
 </p>
-<%= link_to "Activate", edit_account_activation_url(@user.activation_token, email: @user.email) %>
+<%= link_to "Activate", account_activations_edit_url(id: @user.activation_token, email: @user.email) %>
+

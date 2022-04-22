@@ -2,6 +2,8 @@ class AccountActivationsController < ApplicationController
 
     def edit
         user = User.find_by(email: params[:email])
+
+        # You HAVE to pass params[:id] above
         if user && !user.activated? && user.authenticated?(:activation, params[:id])
             user.activate
             user.update_attribute(:activated, true)
