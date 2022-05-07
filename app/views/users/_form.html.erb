@@ -1,0 +1,51 @@
+
+<%= form_with model: @user do |form|%>
+	<p>
+		<%= t('session.email')%> <br>
+		<%= form.email_field :email, value: params[:email],
+		class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:email).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+
+	</p>
+
+	<p>
+		<%= t('session.name')%> <br>
+		<%= form.text_field :name, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:name).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+
+	<p>
+
+		<%= t('session.password')%> <br>
+		<%= form.password_field :password, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:password).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+
+	<p>
+		<%= t('session.confirmpass')%> <br>
+		<%= form.password_field :password_confirmation, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:password_confirmation).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+	<% unless @user.new_record? %>
+	<p>
+		<%= t('session.oldpass')%> <br>
+		<%= form.password_field :old_password, class: 'form-control form-control-lg' %>
+		<% @user.errors.full_messages_for(:old_password).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+	<% end %>
+	<p>
+		
+		<%= form.submit "Let`s go!", class: 'btn btn-primary btn-lg' %>
+	</p>
+
+	<% end %>

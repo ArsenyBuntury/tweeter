@@ -1,0 +1,22 @@
+<%= form_with model:[@twit, @comment] do |f| %>
+
+	
+	<p>
+		<%= t('comment.username')%><br>
+		<%= f.text_field(:commenter,{:class => "form-control"}) %>
+		<% @comment.errors.full_messages_for(:commenter).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+		
+	</p>
+	<p>
+		<%= t('comment.comment')%><br>
+		<%= f.text_area(:body,{:class => "form-control"})%>
+		<% @comment.errors.full_messages_for(:body).each do |message| %>
+		<div class="alert alert-danger"><%= message %></div>
+		<% end %>
+	</p>
+	<p>
+		<%= f.submit(t('twit.submit_comment'),{:class => "btn btn-success"})%>
+	</p>
+	<% end %>

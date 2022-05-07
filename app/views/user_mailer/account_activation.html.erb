@@ -1,0 +1,8 @@
+<h1>Twitter</h1>
+
+<p>Hi <%= @user.name %>, </p>
+<p>
+  Welcome to the Twitter Clone! Click on the link below to activate your account:
+</p>
+<%= link_to "Activate", account_activations_edit_url(id: @user.activation_token, email: @user.email) %>
+

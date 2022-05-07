@@ -1,33 +1,55 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
-  hello: "Hello world"
+  twit:
+    user: "You can keep being anonymous or use your name : "
+    edit: "Edit twit"
+    delete: "Delete twit"
+    add_comment: "Add your comment: "
+    comments: "All comments"
+    submit_comment: "Submit!"
+    name: "Username"
+    twit: "Twit"
+    new: "Create new twit"
+  
+  comment:
+    username: "Username "
+    comment: "Comment"
+
+  session:
+    reg: "Registration"
+    email: "Your email"
+    password: "Your password"
+    remember: "Remember me"
+    login: "Log in"
+    name: "Your name"
+    confirmpass: "Password confirmation"
+    oldpass: "Old password"
+
+  menu:
+    autorize: "Please log in or sign up to see all posts"
+    twits: "All twits"
+    create: "Create twit"
+    search: "Search"
+    search_for: "Search for:"
+    contact: "Contact us"
+    about: "About us"
+    profile: "Profile"
+    logout: "Log out"
+    login: "Log in"
+    signup: "Sign up"
+    greetings: "Hi, "
+    showtwit: "Show twit"
+  global:
+    button:
+      delete: Delete
+      edit: Change
+      show: Show
+      submit: Submit 
+  about:
+    aboutus: "Hi! My name is Arseny and I`m new to Ruby on Rails framework.
+     You are on my first website."
+  contact:
+    contactus: "Here you can check for my social links"
+    vk: "Vkontakte"
+profile:
+  edit:
+    goback: "Вернуться назад"

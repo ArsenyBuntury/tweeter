@@ -1,0 +1,12 @@
+<% provide :page_title, 'Log in' %>
+<h1>Forgot password</h1>
+
+<div class="main">
+    <%= form_with(url: password_resets_path, scope: :password_reset, local: true) do |f| %>
+    <%= f.label :email %>
+    <%= f.email_field :email, class: 'form-control' %>
+
+    <%= f.submit "Submit", class:"btn btn-primary" %>
+    <% end %>
+    -<%= link_to "Go back", home_path, class:'btn btn-info' %>
+    </div>

@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@popperjs/core": "^2.11.2",
+    "bootstrap-sass": "^3.3.7"
+  }
+}
